@@ -1,3 +1,4 @@
+import random
 from kivy.app import App
 from kivy.clock import Clock
 from kivy.graphics import Color, Rectangle, Line, Ellipse
