@@ -1,0 +1,61 @@
+{
+  "manifest_version": 3,
+  "name": "MaHiR QX AI - Quotex Helper",
+  "version": "1.0.0",
+  "description": "MaHiR QX AI trading analysis helper for Quotex. Provides visual signals and customization; does not place trades automatically.",
+  "icons": {
+    "16": "icons/phoenix.png",
+    "48": "icons/phoenix.png",
+    "128": "icons/phoenix.png"
+  },
+  "permissions": [
+    "storage",
+    "activeTab",
+    "unlimitedStorage"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "MaHiR QX AI Settings",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/phoenix.png",
+      "48": "icons/phoenix.png",
+      "128": "icons/phoenix.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "customizer.js"
+      ],
+      "run_at": "document_start",
+      "all_frames": false
+    },
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_idle",
+      "all_frames": false
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "icons/phoenix.png",
+        "images/phoenix.png"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>MaHiR QX AI Settings</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">
+          <img src="icons/phoenix.png" alt="" />
+        </span>
+        <span class="brand-text">
+          <span class="brand-name">MaHiR QX AI</span>
+          <span class="brand-tag">Quotex Trading Helper</span>
+        </span>
+      </div>
+      <span class="brand-version">v1.2</span>
+    </header>
+
+    <main class="content">
+      <div style="margin:10px 12px;padding:10px;border:1px solid rgba(255,255,255,.15);border-radius:10px;font-size:12px;line-height:1.45;">
+        <strong>MaHiR QX AI</strong><br>
+        Automatic trade execution is disabled. Signals require manual confirmation.
+      </div>
+      <!-- ============ Section 1: Floating Icon ============ -->
+      <section class="section">
+        <div class="section-head">
+          <div class="section-head-row">
+            <div class="section-head-left">
+              <span class="section-icon" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="9" />
+                  <circle cx="12" cy="12" r="3" />
+                </svg>
+              </span>
+              <h2 class="section-title">Floating Icon</h2>
+            </div>
+            <button
+              class="edit-toggle"
+              id="editToggleBtn"
+              type="button"
+              aria-label="Edit custom images"
+              title="Edit custom images"
+            >
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" />
+              </svg>
+            </button>
+          </div>
+          <p class="section-hint">
+            The mark that floats on the page — click it to start the scan
+          </p>
+        </div>
+
+        <div class="image-grid" id="imageGrid">
+          <button class="image-option" data-image="phoenix" type="button">
+            <span class="image-thumb">
+              <img src="images/phoenix.png" alt="Phoenix" />
+            </span>
+            <span class="image-name">Phoenix</span>
+            <span class="image-check"></span>
+          </button>
+          <!-- Custom images get inserted here by popup.js, before the add slot. -->
+          <button
+            class="image-option image-option-add"
+            data-image="add"
+            id="addCustomSlot"
+            type="button"
+            aria-label="Add custom image"
+          >
+            <span class="image-thumb image-thumb-add">
+              <span class="upload-plus">+</span>
+            </span>
+            <span class="image-name">Add</span>
+          </button>
+        </div>
+
+        <input
+          type="file"
+          id="customFileInput"
+          accept="image/png,image/jpeg,image/webp,image/gif,image/svg+xml"
+          hidden
+        />
+      </section>
+
+      <!-- ============ Section: Watermark ============ -->
+      <section class="section">
+        <div class="section-head">
+          <div class="section-head-row">
+            <div class="section-head-left">
+              <span class="section-icon" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
+                  <circle cx="12" cy="12" r="3" />
+                </svg>
+              </span>
+              <h2 class="section-title">Watermark</h2>
+            </div>
+          </div>
+          <p class="section-hint">
+            Custom text shown below the floating icon. Leave empty to hide.
+          </p>
+        </div>
+        <input
+          type="text"
+          id="watermarkTextInput"
+          class="watermark-input"
+          placeholder=""
+          maxlength="60"
+          autocomplete="off"
+          spellcheck="false"
+        />
+      </section>
+
+      <!-- ============ Section 2: Trade Direction ============ -->
+      <section class="section">
+        <div class="section-head">
+          <div class="section-head-left">
+            <span class="section-icon" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M7 17l5-5 5 5" />
+                <path d="M7 7l5 5 5-5" />
+              </svg>
+            </span>
+            <h2 class="section-title">Trade Direction</h2>
+          </div>
+          <p class="section-hint">
+            Force every trade Up, Down, or leave it random (Both)
+          </p>
+        </div>
+
+        <div class="direction-group" id="directionGroup" role="radiogroup" aria-label="Trade Direction">
+          <button class="direction-option" data-direction="up" type="button" role="radio" aria-checked="false">
+            <svg class="direction-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 19V5" />
+              <path d="M5 12l7-7 7 7" />
+            </svg>
+            <span class="direction-label">Up</span>
+          </button>
+          <button class="direction-option" data-direction="both" type="button" role="radio" aria-checked="true">
+            <svg class="direction-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M7 4l-3 3 3 3" />
+              <path d="M4 7h12" />
+              <path d="M17 14l3 3-3 3" />
+              <path d="M20 17H8" />
+            </svg>
+            <span class="direction-label">Both</span>
+          </button>
+          <button class="direction-option" data-direction="down" type="button" role="radio" aria-checked="false">
+            <svg class="direction-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 5v14" />
+              <path d="M19 12l-7 7-7-7" />
+            </svg>
+            <span class="direction-label">Down</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- ============ Section 3: Size Controls ============ -->
+      <section class="section">
+        <div class="section-head">
+          <div class="section-head-left">
+            <span class="section-icon" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 6H3" />
+                <path d="M17 12H3" />
+                <path d="M13 18H3" />
+              </svg>
+            </span>
+            <h2 class="section-title">Size Controls</h2>
+          </div>
+          <p class="section-hint">Adjust icon and label size independently</p>
+        </div>
+
+        <div class="size-controls">
+          <div class="size-control-row">
+            <span class="size-label">Image</span>
+            <div class="slider-container">
+              <div class="slider-track" id="imageSizeTrack">
+                <div class="slider-fill" id="imageSizeFill"></div>
+                <div class="slider-thumb" id="imageSizeThumb"></div>
+              </div>
+              <span class="slider-value" id="imageSizeValue">100%</span>
+            </div>
+          </div>
+
+          <div class="size-control-row">
+            <span class="size-label">Text</span>
+            <div class="slider-container">
+              <div class="slider-track" id="textSizeTrack">
+                <div class="slider-fill" id="textSizeFill"></div>
+                <div class="slider-thumb" id="textSizeThumb"></div>
+              </div>
+              <span class="slider-value" id="textSizeValue">100%</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ Section 4: Scan Animation ============ -->
+      <section class="section">
+        <div class="section-head">
+          <div class="section-head-left">
+            <span class="section-icon" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 12h6" />
+                <path d="M16 12h6" />
+                <path d="M12 2v6" />
+                <path d="M12 16v6" />
+                <circle cx="12" cy="12" r="3" />
+              </svg>
+            </span>
+            <h2 class="section-title">Scan Animation</h2>
+          </div>
+          <p class="section-hint">Pick an effect, then choose a glow color</p>
+        </div>
+
+        <div class="animation-list" id="animationList">
+          <div class="animation-option" data-anim="sweep">
+            <span class="anim-preview anim-preview-sweep" aria-hidden="true"></span>
+            <span class="anim-info">
+              <span class="anim-title">Laser Sweep</span>
+              <span class="anim-desc">Top-to-bottom luminous beam</span>
+            </span>
+            <span class="anim-colors" role="group" aria-label="Color">
+              <button class="anim-color-dot dot-green"  data-color="green"  type="button" aria-label="Green"></button>
+              <button class="anim-color-dot dot-yellow" data-color="yellow" type="button" aria-label="Yellow"></button>
+              <button class="anim-color-dot dot-blue"   data-color="blue"   type="button" aria-label="Blue"></button>
+              <button class="anim-color-dot dot-red"    data-color="red"    type="button" aria-label="Red"></button>
+            </span>
+          </div>
+
+          <div class="animation-option" data-anim="royale">
+            <span class="anim-preview anim-preview-royale" aria-hidden="true"></span>
+            <span class="anim-info">
+              <span class="anim-title">Royale Frame</span>
+              <span class="anim-desc">Illuminated border around the screen</span>
+            </span>
+            <span class="anim-colors" role="group" aria-label="Color">
+              <button class="anim-color-dot dot-green"  data-color="green"  type="button" aria-label="Green"></button>
+              <button class="anim-color-dot dot-yellow" data-color="yellow" type="button" aria-label="Yellow"></button>
+              <button class="anim-color-dot dot-blue"   data-color="blue"   type="button" aria-label="Blue"></button>
+              <button class="anim-color-dot dot-red"    data-color="red"    type="button" aria-label="Red"></button>
+            </span>
+          </div>
+
+          <div class="animation-option" data-anim="shimmer">
+            <span class="anim-preview anim-preview-shimmer" aria-hidden="true"></span>
+            <span class="anim-info">
+              <span class="anim-title">Silk Shimmer</span>
+              <span class="anim-desc">Diagonal metallic ribbon glide</span>
+            </span>
+            <span class="anim-colors" role="group" aria-label="Color">
+              <button class="anim-color-dot dot-green"  data-color="green"  type="button" aria-label="Green"></button>
+              <button class="anim-color-dot dot-yellow" data-color="yellow" type="button" aria-label="Yellow"></button>
+              <button class="anim-color-dot dot-blue"   data-color="blue"   type="button" aria-label="Blue"></button>
+              <button class="anim-color-dot dot-red"    data-color="red"    type="button" aria-label="Red"></button>
+            </span>
+          </div>
+
+          <div class="animation-option" data-anim="comet">
+            <span class="anim-preview anim-preview-comet" aria-hidden="true"></span>
+            <span class="anim-info">
+              <span class="anim-title">Comet Streak</span>
+              <span class="anim-desc">Glowing orb with trailing tail</span>
+            </span>
+            <span class="anim-colors" role="group" aria-label="Color">
+              <button class="anim-color-dot dot-green"  data-color="green"  type="button" aria-label="Green"></button>
+              <button class="anim-color-dot dot-yellow" data-color="yellow" type="button" aria-label="Yellow"></button>
+              <button class="anim-color-dot dot-blue"   data-color="blue"   type="button" aria-label="Blue"></button>
+              <button class="anim-color-dot dot-red"    data-color="red"    type="button" aria-label="Red"></button>
+            </span>
+          </div>
+
+          <div class="animation-option" data-anim="stardust">
+            <span class="anim-preview anim-preview-stardust" aria-hidden="true"></span>
+            <span class="anim-info">
+              <span class="anim-title">Stardust Veil</span>
+              <span class="anim-desc">Cascading sparkle particles</span>
+            </span>
+            <span class="anim-colors" role="group" aria-label="Color">
+              <button class="anim-color-dot dot-green"  data-color="green"  type="button" aria-label="Green"></button>
+              <button class="anim-color-dot dot-yellow" data-color="yellow" type="button" aria-label="Yellow"></button>
+              <button class="anim-color-dot dot-blue"   data-color="blue"   type="button" aria-label="Blue"></button>
+              <button class="anim-color-dot dot-red"    data-color="red"    type="button" aria-label="Red"></button>
+            </span>
+          </div>
+
+          <div class="animation-option" data-anim="aurora">
+            <span class="anim-preview anim-preview-aurora" aria-hidden="true"></span>
+            <span class="anim-info">
+              <span class="anim-title">Aurora Wave</span>
+              <span class="anim-desc">Flowing luminous ribbons</span>
+            </span>
+            <span class="anim-colors" role="group" aria-label="Color">
+              <button class="anim-color-dot dot-green"  data-color="green"  type="button" aria-label="Green"></button>
+              <button class="anim-color-dot dot-yellow" data-color="yellow" type="button" aria-label="Yellow"></button>
+              <button class="anim-color-dot dot-blue"   data-color="blue"   type="button" aria-label="Blue"></button>
+              <button class="anim-color-dot dot-red"    data-color="red"    type="button" aria-label="Red"></button>
+            </span>
+          </div>
+
+          <div class="animation-option" data-anim="sonar">
+            <span class="anim-preview anim-preview-sonar" aria-hidden="true"></span>
+            <span class="anim-info">
+              <span class="anim-title">Sonar Pulse</span>
+              <span class="anim-desc">Concentric radar rings</span>
+            </span>
+            <span class="anim-colors" role="group" aria-label="Color">
+              <button class="anim-color-dot dot-green"  data-color="green"  type="button" aria-label="Green"></button>
+              <button class="anim-color-dot dot-yellow" data-color="yellow" type="button" aria-label="Yellow"></button>
+              <button class="anim-color-dot dot-blue"   data-color="blue"   type="button" aria-label="Blue"></button>
+              <button class="anim-color-dot dot-red"    data-color="red"    type="button" aria-label="Red"></button>
+            </span>
+          </div>
+
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <button class="btn btn-ghost" id="resetBtn" type="button">Reset</button>
+      <button class="btn btn-primary" id="saveBtn" type="button">
+        <span class="btn-label">Save &amp; Reload</span>
+      </button>
+    </footer>
+
+    <div class="toast" id="toast" hidden></div>
+
+    <script src="popup.js"></script>
+  </body>
+</html>
